@@ -10,20 +10,30 @@ export class App extends Component {
       weather: "",
     };
   }
-  // updateCity(name) {
-  //   this.setState({ city: name });
-  //   console.log(this.state.city);
-  // }
+  onReset() {
+    this.setState({
+      city: "",
+      weather: "",
+    });
+  }
 
   fetchWeather(city) {
     console.log(city);
     this.setState({ city: city });
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fe4feefa8543e06d4f3c66d92c61b69c`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          alert("please enter valid city name ");
+          throw new Error("no city founds");
+        }
+      })
       .then((data) => {
         console.log(data);
+
         this.setState({
           weather: data,
         });
@@ -35,12 +45,13 @@ export class App extends Component {
       <div className="container">
         <span>Weather App - Mahipal</span>
         {this.state.city && this.state.weather ? (
-          <Weather weather={this.state.weather} city={this.state.city} />
-        ) : (
-          <City
-            // updateCity={this.updateCity.bind(this)}
-            fetchWeather={this.fetchWeather.bind(this)}
+          <Weather
+            weather={this.state.weather}
+            city={this.state.city}
+            onResetFnc={this.onReset.bind(this)}
           />
+        ) : (
+          <City fetchWeather={this.fetchWeather.bind(this)} />
         )}
       </div>
     );

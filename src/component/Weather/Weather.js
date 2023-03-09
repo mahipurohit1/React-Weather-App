@@ -8,6 +8,10 @@ class Weather extends Component {
       timeStamp * 1000
     ).getMinutes()}`;
   }
+  clickHandler() {
+    console.log("hi");
+    this.props.onResetFnc();
+  }
   render() {
     return (
       <>
@@ -43,6 +47,11 @@ class Weather extends Component {
             value={this.props.weather?.main?.pressure}
           />
         </div>
+        <>
+          <button onClick={this.clickHandler.bind(this)}>
+            Search for another city{" "}
+          </button>
+        </>
       </>
     );
   }
