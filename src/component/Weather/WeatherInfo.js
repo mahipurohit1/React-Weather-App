@@ -4,7 +4,11 @@ class WeatherInfo extends Component {
   render() {
     return (
       <div className="infoContainer">
-        <img className="infoIcon" src={WeatherInfoIcons[this.props.name]} />
+        <img
+          className="infoIcon"
+          src={WeatherInfoIcons[this.props.name]}
+          alt="img"
+        />
         <div className="infoLabel">
           {this.props.value}
           <span>{this.props.name}</span>

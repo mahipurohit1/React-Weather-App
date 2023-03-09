@@ -18,7 +18,11 @@ class City extends Component {
   render() {
     return (
       <>
-        <img className="welcomeWeatherLogo" src={"/icons/perfect-day.svg"} />
+        <img
+          className="welcomeWeatherLogo"
+          src={"/icons/perfect-day.svg"}
+          alt="img"
+        />
         <span className="chooseCityLabel">Find Weather of your city</span>
         <form className="form" onSubmit={this.onSubmit.bind(this)}>
           <input

@@ -25,6 +25,7 @@ class Weather extends Component {
           <img
             className="weatherIcon"
             src={WeatherIcons[this.props.weather?.weather[0].icon]}
+            alt="img"
           />
         </div>
         <span className="location">{`${this.props.weather?.name}, ${this.props.weather?.sys?.country}`}</span>
