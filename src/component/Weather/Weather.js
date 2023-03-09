@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-export class Weather extends Component {
+import WeatherInfo from "./WeatherInfo";
+class Weather extends Component {
   isDay = this.props.weather?.weather[0].icon?.includes("d");
   getTime(timeStamp) {
     return `${new Date(timeStamp * 1000).getHours()} : ${new Date(
@@ -26,25 +26,18 @@ export class Weather extends Component {
 
         <span className="weatherInfoLabel">Weather Info</span>
         <div className="weatherInfoContainer">
-          <div
-            className="weatherInfoComponent"
+          <WeatherInfo
             name={isDay ? "sunset" : "sunrise"}
             value={`${this.getTime(
               this.props.weather?.sys[isDay ? "sunset" : "sunrise"]
             )}`}
           />
-          <div
-            className="weatherInfoComponent"
+          <WeatherInfo
             name={"humidity"}
             value={this.props.weather?.main?.humidity}
           />
-          <div
-            className="weatherInfoComponent"
-            name={"wind"}
-            value={this.props.weather?.wind?.speed}
-          />
-          <div
-            className="weatherInfoComponent"
+          <WeatherInfo name={"wind"} value={this.props.weather?.wind?.speed} />
+          <WeatherInfo
             name={"pressure"}
             value={this.props.weather?.main?.pressure}
           />
