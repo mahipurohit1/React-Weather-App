@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { WeatherIcons } from "../../util/WeatherIcons";
 import WeatherInfo from "./WeatherInfo";
 class Weather extends Component {
   isDay = this.props.weather?.weather[0].icon?.includes("d");
@@ -27,9 +28,9 @@ class Weather extends Component {
         <span className="weatherInfoLabel">Weather Info</span>
         <div className="weatherInfoContainer">
           <WeatherInfo
-            name={isDay ? "sunset" : "sunrise"}
+            name={this.isDay ? "sunset" : "sunrise"}
             value={`${this.getTime(
-              this.props.weather?.sys[isDay ? "sunset" : "sunrise"]
+              this.props.weather?.sys[this.isDay ? "sunset" : "sunrise"]
             )}`}
           />
           <WeatherInfo
